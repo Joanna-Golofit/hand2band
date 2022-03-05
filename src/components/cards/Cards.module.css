@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 .cardContainer {
-  width: 300px; 
+  width: 300px;
 }
 .img {
   width: 300px;
@@ -32,8 +32,9 @@ a {
   border-radius: 5px;
   font-size: 14px;
 }
-
-.cardContainer:hover {
+.tag:hover {
   color: red;
-  /* scale: 1.5; */
+  rotate: 90deg;
 }
+
+
