@@ -1,10 +1,26 @@
 .container {
+  /* display: block; */
   height: 90vh;
   background-color: gray;
   background-image: url('https://image.ibb.co/mjdbZ5/bg5.jpg');
   /* background-size: contain; */
   background-size: cover;
+  padding-top: 60px;
   /* background-size: auto; */
   background-repeat: no-repeat;
   /* background-image: url('https://unsplash.com/photos/6VhPY27jdps'); */
+}
+.wrapper {
+  max-width: 70vw;
+  margin: 0px auto;
+  color: white;
+}
+.title {
+  margin: 20px 0;
+}
+.paragraph {
+  font-size: 13px;
+}
+.span {
+  font-weight: 900;
 }

@@ -6,9 +6,9 @@
   margin: 20px 0;
 }
 .button {
-   /* display: inline-block; */
+  /* display: inline-block; */
   /* width: 32px;*/
-  height: 35px; 
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,22 +17,22 @@
   /* background-image: url("https://www.svgrepo.com/show/49706/eye-on-magnifying-glass.svg"); */
   /* background-size: 60%;
   background-repeat: no-repeat;*/
-   cursor: pointer;
-   background-color: white;
-   border-top-left-radius: 6px;
-   border-bottom-left-radius: 6px;
+  cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.694);
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   /* outline: none */
 }
 .label {
   font-weight: bold;
 }
 .input {
-  width: 100%;
+  width: 60%;
   height: 35px;
   padding: 8px;
   border: 0;
   outline: none;
-
-  border-top-right-radius: 6px;
-   border-bottom-right-radius: 6px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: rgba(211, 211, 211, 0.694);
 }
