@@ -1,0 +1,23 @@
+.container {
+}
+.wrapper {
+  max-width: 90vw;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+}
+.queryHeader {
+  margin: 20px 0;
+}
+/* .results {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+}
+
+.img {
+ background-color: gray;
+ object-fit: cover;
+ object-position: 30% 30%;
+} */

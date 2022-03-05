@@ -1,6 +1,5 @@
 import fetchImages from "../../utils/fetchImages";
 import styles from "./Searchbar.module.css";
-import { useState } from "react";
 import { ImagesContext, QueryContext } from "../../Helper/Context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";

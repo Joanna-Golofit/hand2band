@@ -1,10 +1,15 @@
 import React from "react";
 import { useContext } from "react";
-import { QueryContext } from "../../Helper/Context";
+import { ImagesContext, QueryContext } from "../../Helper/Context";
+import fetchImages from "../../utils/fetchImages";
 import styles from "./SearchBarResults.module.css";
+
 
 const SearchBarResults = () => {
   const { query, setQuery } = useContext(QueryContext);
+  const { images, setImages } = useContext(ImagesContext);
+  const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
+
 
   const handleChange = (e) => {
     const inputQuery = e.target.value;
@@ -14,11 +19,25 @@ const SearchBarResults = () => {
       setQuery("");
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchImages(URL)
+      .then((data) => {
+        //  this.setState({ images: data.hits });
+        setImages(data.results);
+        console.log("data.results:", data.results);
+        // setQuery("");
+        // return data.results;
+        // navigate("/results");
+      })
+      .catch((err) => console.log("err", err))
+      .finally(console.log("fetchImages"));
+  };
 
   return (
     <form
       className={styles.form}
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <button type="submit" className={styles.button}>
         <span className={styles.label}></span>
