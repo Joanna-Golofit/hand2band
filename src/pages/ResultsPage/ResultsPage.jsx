@@ -8,8 +8,8 @@ import styles from "./ResultsPage.module.css";
 
 
 const ResultsPage = () => {
-  const { images, setImages } = useContext(ImagesContext);
-  const { query, setQuery } = useContext(QueryContext);
+  const { images } = useContext(ImagesContext);
+  const { query } = useContext(QueryContext);
 
   return (
     <div className={styles.container}>
