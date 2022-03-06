@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import fetchImages from "../../utils/fetchImages";
+// import fetchImages from "../../utils/fetchImages";
 import {
-  Link,
-  Outlet,
+  // Link,
+  // Outlet,
   useLocation,
-  useNavigate,
-  useParams,
+  // useNavigate,
+  // useParams,
 } from "react-router-dom";
 import styles from "./ImageDetailsPage.module.css";
 

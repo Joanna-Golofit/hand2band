@@ -5,8 +5,8 @@ import { ImagesContext, QueryContext } from "../../Helper/Context";
 import styles from "./Cards.module.css";
 
 const Cards = () => {
-  const { images, setImages } = useContext(ImagesContext);
-  const { query, setQuery } = useContext(QueryContext);
+  const { images } = useContext(ImagesContext);
+  const { query } = useContext(QueryContext);
 
   return (
     // <div className={styles.results}>

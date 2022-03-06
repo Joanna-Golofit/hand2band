@@ -7,7 +7,7 @@ import styles from "./SearchBarResults.module.css";
 
 const SearchBarResults = () => {
   const { query, setQuery } = useContext(QueryContext);
-  const { images, setImages } = useContext(ImagesContext);
+  const { setImages } = useContext(ImagesContext);
   const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
 
 

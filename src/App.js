@@ -8,7 +8,7 @@ import ResultsPage from "./pages/ResultsPage/ResultsPage";
 
 function App() {
   const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("cat");
+  const [query, setQuery] = useState("");
 
   return (
     // <div className="App">
