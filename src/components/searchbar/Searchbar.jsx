@@ -1,15 +1,50 @@
 import fetchImages from "../../utils/fetchImages";
 import styles from "./Searchbar.module.css";
-import { ImagesContext, QueryContext } from "../../Helper/Context";
+import { AutocompleteContext, ImagesContext, QueryContext } from "../../Helper/Context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const SearchBar = () => {
   const navigate = useNavigate();
 
   const { setImages } = useContext(ImagesContext);
+  const { autocompleteSuggestions, setAutocompleteSuggestions } =
+    useContext(AutocompleteContext);
   const { query, setQuery } = useContext(QueryContext);
   const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
+
+ useEffect(() => {
+    fetchImages(
+      "https://api.unsplash.com/search/photos?query=a&per_page=1000&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k"
+    )
+      .then((data) => {
+        //  this.setState({ images: data.hits });
+        // setImages(data.results);
+        // console.log("data:", data);
+        // console.log("data.results:", data.results);
+        // console.log(
+        //   "data.results.tags:",
+        //   data.results.flatMap((result) =>
+        //     result.tags.flatMap((tag) => tag.title)
+        //   )
+        // );
+        let array = data.results.flatMap((result) =>
+          result.tags.flatMap((tag) => tag.title)
+        );
+        let uniqueArray = [...new Set(array)];
+        return uniqueArray;
+        // setQuery("");
+        // return data.results;
+        // navigate("/results");
+      })
+      .then((uniqueArray) => setAutocompleteSuggestions(uniqueArray))
+      .catch((err) => console.log("err", err))
+      .finally(console.log("fetchImages SearchBar useEffect"));
+ 
+   
+ }, [])
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,11 +58,12 @@ const SearchBar = () => {
         navigate("/results");
       })
       .catch((err) => console.log("err", err))
-      .finally(console.log("fetchImages"));
+      .finally(console.log("fetchImages SearchBar"));
   };
   const handleChange = (e) => {
     const inputQuery = e.target.value;
-    if (inputQuery) {
+    
+    if (inputQuery) { // tu wiekszy niz 3?
       setQuery(inputQuery);
     } else {
       setQuery("");
