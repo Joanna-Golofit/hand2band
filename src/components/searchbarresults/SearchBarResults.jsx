@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 // import { useState } from "react";
 import { useContext } from "react";
 import { ImagesContext, QueryContext } from "../../Helper/Context";
@@ -12,10 +12,10 @@ const SearchBarResults = () => {
   const { setImages } = useContext(ImagesContext);
   const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
 
-  useEffect(() => {
-    console.log("query", query);
-    // console.log("closeButton", closeButton);
-  }, []);
+  // useEffect(() => {
+  //   console.log("query", query);
+  //   // console.log("closeButton", closeButton);
+  // }, []);
 
   const handleChange = (e) => {
     const inputQuery = e.target.value;

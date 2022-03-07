@@ -37,7 +37,6 @@ const ImageDetailsPage = () => {
 
   return (
     <div>
-      ImageDetailsPage
       {imgData && (
         <div className={styles.overlay}>
           <div className={styles.modal}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useContext } from "react";
 import Cards from "../../components/cards/Cards";
 import SearchBarResults from "../../components/searchbarresults/SearchBarResults";
@@ -12,11 +12,11 @@ const ResultsPage = () => {
   const { images } = useContext(ImagesContext);
   const { query } = useContext(QueryContext);
 
-useEffect(() => {
-  console.log("query ResultsPage", query);
-  console.log("images", images);
-  console.log("");
-}, []);
+// useEffect(() => {
+//   console.log("query ResultsPage", query);
+//   console.log("images", images);
+//   console.log("");
+// }, []);
 
   return (
     <div className={styles.container}>

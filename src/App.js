@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { NavLink, Route, Routes } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import {
   ImagesContext,
@@ -27,8 +28,8 @@ function App() {
       >
         <ImagesContext.Provider value={{ images, setImages }}>
           <QueryContext.Provider value={{ query, setQuery }}>
-            <NavLink to="/">Home</NavLink>{" "}
-            <NavLink to="/results">Results</NavLink>
+            {/* <NavLink to="/">Home</NavLink>{" "}
+            <NavLink to="/results">Results</NavLink> */}
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/results" element={<ResultsPage />} />
