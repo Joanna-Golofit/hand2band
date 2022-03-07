@@ -1,14 +1,24 @@
 import React from "react";
+import { useEffect } from "react";
+// import { useState } from "react";
 import { useContext } from "react";
 import { ImagesContext, QueryContext } from "../../Helper/Context";
 import fetchImages from "../../utils/fetchImages";
 import styles from "./SearchBarResults.module.css";
 
-
 const SearchBarResults = () => {
+  // const { closeButton, setCloseButton } = useState(true);
   const { query, setQuery } = useContext(QueryContext);
   const { setImages } = useContext(ImagesContext);
   const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
+
+useEffect(() => {
+  console.log("query", query )
+  console.log("", )
+  console.log("", )
+
+ 
+}, [])
 
 
   const handleChange = (e) => {
@@ -19,6 +29,7 @@ const SearchBarResults = () => {
       setQuery("");
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchImages(URL)
@@ -34,27 +45,36 @@ const SearchBarResults = () => {
       .finally(console.log("fetchImages"));
   };
 
-  return (
-    <form
-      className={styles.form}
-      onSubmit={handleSubmit}
-    >
-      <button type="submit" className={styles.button}>
-        <span className={styles.label}></span>
-        <svg width="18" height="18" viewBox="0 0 30 30">
-          <path d="M 22 20 c 1.2 -1.6 2 -3.7 2 -6 c 0 -5.5 -4.5 -10 -10 -10 S 4 8.5 4 14 s 4.5 10 10 10 c 2.3 0 4.3 -0.7 6 -2 l 6.1 6 l 1.9 -2 l -6 -6 Z m -8 1.3 c -4 0 -7.3 -3.3 -7.3 -7.3 S 10 6.7 14 6.7 s 7.3 3.3 7.3 7.3 s -3.3 7.3 -7.3 7.3 Z"></path>
-        </svg>
-      </button>
+  // const handleClose = () => {
+  //   console.log("close");
+  // };
 
-      <input
-        onChange={handleChange}
-        className={styles.input}
-        type="text"
-        value={query}
-        autoComplete="on"
-        autoFocus
-        placeholder="Search free high-resolution photos"
-      />
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.inputContent}>
+        <button type="submit" className={styles.button}>
+          {/* <span className={styles.label}></span> */}
+          <svg width="18" height="18" viewBox="0 0 30 30">
+            <path d="M 22 20 c 1.2 -1.6 2 -3.7 2 -6 c 0 -5.5 -4.5 -10 -10 -10 S 4 8.5 4 14 s 4.5 10 10 10 c 2.3 0 4.3 -0.7 6 -2 l 6.1 6 l 1.9 -2 l -6 -6 Z m -8 1.3 c -4 0 -7.3 -3.3 -7.3 -7.3 S 10 6.7 14 6.7 s 7.3 3.3 7.3 7.3 s -3.3 7.3 -7.3 7.3 Z"></path>
+          </svg>
+        </button>
+        <input
+          onChange={handleChange}
+          className={styles.input}
+          type="text"
+          value={query}
+          autoComplete="on"
+          autoFocus
+          placeholder="Search free high-resolution photos"
+        />
+        <button
+          className={styles.buttonClose}
+          type="button"
+          // onClick={handleClose}
+        >
+          X
+        </button>
+      </div>
     </form>
   );
 };

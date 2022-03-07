@@ -109,6 +109,16 @@ const SearchBar = () => {
   const handleOnClick = (word) => {
     setQuery(word);
     setFilteredSuggestions([]);
+    fetchImages(URL)
+      .then((data) => {
+        //  this.setState({ images: data.hits });
+        setImages(data.results);
+        console.log("data.results:", data.results);
+        // setQuery("");
+        // return data.results;
+        navigate("/results");
+      })
+      .catch((err) => console.log("err", err));
     navigate("/results");
   };
 
