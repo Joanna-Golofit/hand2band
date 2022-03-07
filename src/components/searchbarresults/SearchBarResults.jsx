@@ -7,19 +7,15 @@ import fetchImages from "../../utils/fetchImages";
 import styles from "./SearchBarResults.module.css";
 
 const SearchBarResults = () => {
-  // const { closeButton, setCloseButton } = useState(true);
+  // const { closeButton, setCloseButton } = useState("tak");
   const { query, setQuery } = useContext(QueryContext);
   const { setImages } = useContext(ImagesContext);
   const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
 
-useEffect(() => {
-  console.log("query", query )
-  console.log("", )
-  console.log("", )
-
- 
-}, [])
-
+  useEffect(() => {
+    console.log("query", query);
+    // console.log("closeButton", closeButton);
+  }, []);
 
   const handleChange = (e) => {
     const inputQuery = e.target.value;
@@ -45,9 +41,11 @@ useEffect(() => {
       .finally(console.log("fetchImages"));
   };
 
-  // const handleClose = () => {
-  //   console.log("close");
-  // };
+  const handleClose = () => {
+    console.log("close");
+    setQuery("");
+    setImages([]);
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -67,13 +65,15 @@ useEffect(() => {
           autoFocus
           placeholder="Search free high-resolution photos"
         />
-        <button
-          className={styles.buttonClose}
-          type="button"
-          // onClick={handleClose}
-        >
-          X
-        </button>
+        {/* {closeButton === true && ( */}
+          <button
+            className={styles.buttonClose}
+            type="button"
+            onClick={handleClose}
+          >
+            X
+          </button>
+        {/* )} */}
       </div>
     </form>
   );
