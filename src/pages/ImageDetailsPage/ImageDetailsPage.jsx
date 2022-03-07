@@ -35,6 +35,23 @@ const ImageDetailsPage = () => {
     //     .finally(console.log("fetchImages"));
   }, [location.state.data]);
 
+// const renderSwitch = (param) => {
+//   switch(param){
+//         case 1: return "January";
+//         case 2: return "February";
+//         case 3: return "March";
+//         case 4: return "April";
+//         case 5: return "May";
+//         case 6: return "June"; 
+//         case 7: return "July";
+//         case 8: return "August";
+//         case 9: return "September";
+//         case 10: return "October";
+//         case 11: return "November";
+//         case 12: return "December";
+//         }
+// }
+
   return (
     <div>
       {imgData && (
@@ -43,6 +60,7 @@ const ImageDetailsPage = () => {
             <p>{imgData.id}</p>
             <p>{imgData.created_at}</p>
             <p>{imgData.created_at.slice(0, 4)}</p>
+            {/* <p>{renderSwitch(imgData.created_at.slice(5, 7))}</p> */}
             <p>{imgData.created_at.slice(5, 7)}</p>
             <p>{imgData.updated_at}</p>
             <p>{imgData.user.name}</p>
