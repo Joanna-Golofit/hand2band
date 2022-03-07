@@ -1,6 +1,11 @@
 import fetchImages from "../../utils/fetchImages";
 import styles from "./Searchbar.module.css";
-import { AutocompleteContext, ImagesContext, QueryContext } from "../../Helper/Context";
+import {
+  FetchedSuggestionsContext,
+  ImagesContext,
+  QueryContext,
+  FilteredSuggestionsContext,
+} from "../../Helper/Context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -9,20 +14,24 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const { setImages } = useContext(ImagesContext);
-  const { autocompleteSuggestions, setAutocompleteSuggestions } =
-    useContext(AutocompleteContext);
+  const { filteredSuggestions, setFilteredSuggestions } = useContext(
+    FilteredSuggestionsContext
+  );
+  const { fetchedSuggestions, setFetchedSuggestions } = useContext(
+  FetchedSuggestionsContext
+  );
   const { query, setQuery } = useContext(QueryContext);
   const URL = `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`;
 
- useEffect(() => {
+  useEffect(() => {
     fetchImages(
-      "https://api.unsplash.com/search/photos?query=a&per_page=1000&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k"
+      "https://api.unsplash.com/search/photos?query=o&per_page=30&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k"
     )
       .then((data) => {
         //  this.setState({ images: data.hits });
         // setImages(data.results);
         // console.log("data:", data);
-        // console.log("data.results:", data.results);
+        console.log("useEffect fetchImages data.results:", data.results);
         // console.log(
         //   "data.results.tags:",
         //   data.results.flatMap((result) =>
@@ -32,19 +41,19 @@ const SearchBar = () => {
         let array = data.results.flatMap((result) =>
           result.tags.flatMap((tag) => tag.title)
         );
+
+        // let array = data.results.map((result) => result.alt_description);
+        // console.log(' data.results.map((result) => result.alt_description)', data.results.map((result) => result.alt_description));
         let uniqueArray = [...new Set(array)];
         return uniqueArray;
         // setQuery("");
         // return data.results;
         // navigate("/results");
       })
-      .then((uniqueArray) => setAutocompleteSuggestions(uniqueArray))
+      .then((uniqueArray) => setFetchedSuggestions(uniqueArray))
       .catch((err) => console.log("err", err))
       .finally(console.log("fetchImages SearchBar useEffect"));
- 
-   
- }, [])
- 
+  }, [setFetchedSuggestions]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,16 +71,49 @@ const SearchBar = () => {
   };
   const handleChange = (e) => {
     const inputQuery = e.target.value;
-    
-    if (inputQuery) { // tu wiekszy niz 3?
-      setQuery(inputQuery);
+    let matches = [];
+    // if (inputQuery.length >= 3) {
+    if (inputQuery) {
+
+//  fetchImages(URL)
+//    .then((data) => {    
+//      console.log("useEffect fetchImages data.results:", data.results);     
+//      let array = data.results.flatMap((result) =>
+//        result.tags.flatMap((tag) => tag.title)
+//      );
+//      let uniqueArray = [...new Set(array)];
+//      return uniqueArray;
+//      // setQuery("");
+//      // return data.results;
+//      // navigate("/results");
+//    })
+//    .then((uniqueArray) => setFetchedSuggestions(uniqueArray))
+//    .catch((err) => console.log("err", err));
+
+
+      // tu wiekszy niz 3?
+      matches = fetchedSuggestions.filter((word) => {
+        const regex = new RegExp(`${inputQuery}`, "gi");
+        // console.log(new RegExp(`${inputQuery}`, "gi"));
+        // console.log(word.match(regex));
+        return word.match(regex);
+      });
+        setQuery(inputQuery);
     } else {
       setQuery("");
     }
+    console.log("matches", matches);
+    setFilteredSuggestions(matches);
+  };
+
+  const handleOnClick = (word) => {
+    setQuery(word);
+    setFilteredSuggestions([]);
+    navigate("/results");
   };
 
   return (
-    <>
+    <div className={styles.formWrapper}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <button type="submit" className={styles.button}>
           <span className={styles.label}></span>
@@ -90,8 +132,19 @@ const SearchBar = () => {
           placeholder="Search free high-resolution photos"
         />
       </form>
-     
-    </>
+      {filteredSuggestions && filteredSuggestions.length <= 7 && (
+        <div className={styles.suggestionsWrapper}>
+          {filteredSuggestions.map((suggestion, i) => (
+            <p
+              onClick={() => handleOnClick(suggestion)}
+              className={styles.suggestion}
+            >
+              {suggestion}
+            </p>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 

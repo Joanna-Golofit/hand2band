@@ -1,3 +1,6 @@
+.formWrapper {
+position: relative;
+}
 .form {
   /* background-color: red; */
   display: flex;
@@ -35,4 +38,26 @@
 
   border-top-right-radius: 6px;
    border-bottom-right-radius: 6px;
+}
+
+.suggestion {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  height: 35px;
+  display: flex;
+  align-items: center;
+ padding-left: 10px;
+}
+
+.suggestion:hover {
+  background-color: rgb(245, 244, 244);
+
+}
+.suggestionsWrapper {
+  position: absolute;
+  top: 39px;
+  border-radius: 6px;
+  width: 100%;
+  overflow: hidden;
 }
