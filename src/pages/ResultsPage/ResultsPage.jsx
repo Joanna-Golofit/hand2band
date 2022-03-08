@@ -1,5 +1,5 @@
 import React from "react";
-// import { useEffect } from "react";
+// import { useEffe-ct } from "react";
 import { useContext } from "react";
 import Cards from "../../components/cards/Cards";
 import SearchBarResults from "../../components/searchbarresults/SearchBarResults";

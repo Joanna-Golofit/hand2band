@@ -142,10 +142,11 @@ const SearchBar = () => {
           placeholder="Search free high-resolution photos"
         />
       </form>
-      {filteredSuggestions && filteredSuggestions.length <= 7 && (
+      {filteredSuggestions && filteredSuggestions.length <= 10 && (
         <div className={styles.suggestionsWrapper}>
           {filteredSuggestions.map((suggestion, i) => (
             <p
+              key={ i}
               onClick={() => handleOnClick(suggestion)}
               className={styles.suggestion}
             >
