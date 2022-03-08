@@ -142,7 +142,7 @@ const SearchBar = () => {
           placeholder="Search free high-resolution photos"
         />
       </form>
-      {filteredSuggestions && filteredSuggestions.length <= 10 && (
+      {filteredSuggestions && filteredSuggestions.length <= 7 && (
         <div className={styles.suggestionsWrapper}>
           {filteredSuggestions.map((suggestion, i) => (
             <p
