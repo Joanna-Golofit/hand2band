@@ -1,18 +1,17 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   ImagesContext,
-  QueryContext,
   ModalContext,
 } from "../../Helper/Context";
 import styles from "./Cards.module.css";
 import ImageDetails from "../imagedetails/ImageDetails";
-import { useState } from "react";
+// import { useState } from "react";
 
 const Cards = () => {
   const { images } = useContext(ImagesContext);
-  const { query } = useContext(QueryContext);
+  // const { query } = useContext(QueryContext);
   const { modal, setModal } = useContext(ModalContext);
 
   const handleClick = (e, id) => {
