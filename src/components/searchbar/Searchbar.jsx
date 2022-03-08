@@ -52,7 +52,7 @@ const SearchBar = () => {
       })
       .then((uniqueArray) => setFetchedSuggestions(uniqueArray))
       .catch((err) => console.log("err", err))
-      .finally(console.log("fetchImages SearchBar useEffect"));
+      // .finally(console.log("fetchImages SearchBar useEffect"));
   }, [setFetchedSuggestions]);
 
   const handleSubmit = (e) => {
@@ -146,13 +146,16 @@ const SearchBar = () => {
         <div className={styles.suggestionsWrapper}>
           {filteredSuggestions.map((suggestion, i) => (
             <p
-              key={ i}
+              key={i}
               onClick={() => handleOnClick(suggestion)}
               className={styles.suggestion}
             >
               {suggestion}
             </p>
           ))}
+          {query.length >= 1 && filteredSuggestions.length === 0 ? (
+            <h4 className={styles.suggestion}>Sorry, no suggestions...</h4>
+          ) : null}
         </div>
       )}
     </div>
